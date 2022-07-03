@@ -128,8 +128,9 @@
                             @foreach($categories as $cate)
                                 <a class="dropdown-item"
                                     href="{{ url('view-category/'.$cate->slug) }}">{{ $cate->name }}</a>
-                            @endforeach                        
+                            @endforeach                                                    
                         --}}
+                       
                         </div>
                     </li>
                 </ul>

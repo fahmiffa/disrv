@@ -12,8 +12,8 @@ My Orders
             <main class="col-md-8">
                 <article class="card">
                     <header class="card-header">
-                        <strong class="d-inline-block mr-3">Order Date :
-                            {{ date('d F Y', strtotime($orders->created_at)) }}</strong>
+                        <strong class="d-inline-block mr-3">
+                            INV{{ date('dmy', strtotime($orders->created_at)) }}/DSRV/{{ $orders->id }}</strong>
                         {{-- <span>Order Date: 16 December 2018</span> --}}
                     </header>
                     <div class="card-body">
@@ -51,10 +51,18 @@ My Orders
                     <div class="table-responsive">
                         <table class="table table-hover">
                             @foreach($orders->orderitems as $item)
+                            @php $image = json_decode($item->products->image); @endphp
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('assets/uploads/products/'.$item->products->image) }}"
+                                        <img src="{{ asset('assets/uploads/image/'.$image[0]) }}"
                                             class="img border" width="55px">
+                                               @if($item->color)
+                                                <p>Color : {{$item->color}}</p>
+                                                @endif
+                                                
+                                                @if($item->size)
+                                                <p>Size : {{$item->size}}</p>
+                                                @endif
                                     </td>
                                     <td>
                                         <p class="title mb-0">{{ $item->products->name }} </p>
